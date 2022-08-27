@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public PlaceHolderPlayer player { get { return player; } }
+    public Player player { get { return player; } }
     public LayerMask wallLayer { get { return wallLayer; } }
 
     private void Awake()
