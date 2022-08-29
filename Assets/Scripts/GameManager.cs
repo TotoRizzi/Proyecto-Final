@@ -5,7 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public Player player { get { return player; } }
+    private Player _player;
+    public Player Player { get { return _player; } }
+
     public LayerMask wallLayer { get { return wallLayer; } }
 
     private void Awake()
@@ -13,9 +15,14 @@ public class GameManager : MonoBehaviour
         if (instance == null) instance = this;
         else Destroy(gameObject);
     }
+    private void Start()
+    {
+        _player = GameObject.Find("Player").GetComponent<Player>();
+        Debug.Log(_player);
+    }
 
     public Vector3 GetDistanceToPlayer(Transform transform)
     {
-        return player.transform.position - transform.position;
+        return _player.transform.position - transform.position;
     }
 }
