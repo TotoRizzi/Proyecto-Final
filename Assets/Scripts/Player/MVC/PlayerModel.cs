@@ -5,7 +5,7 @@ public class PlayerModel
     Camera _mainCamera;
     Vector2 _movementInput;
     Vector2 _lookAt;
-    Vector2 _mousePos;
+    Vector3 _mousePos;
     Vector2 _groundCheckSize = new Vector2(.2f, .2f);
     bool _isJumping;
     bool _canDoubleJump;
@@ -93,8 +93,8 @@ public class PlayerModel
     }
     public void OnFixedUpdate()
     {
-        _mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        _lookAt = _mousePos - (Vector2)_transform.position;
+        _mousePos = _mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -_mainCamera.transform.position.z));
+        _lookAt = _mousePos - _transform.position;
 
         //Flipeo el sprite del player teniendo en cuenta la posicion del mouse
         if (_lookAt.x != 0)
